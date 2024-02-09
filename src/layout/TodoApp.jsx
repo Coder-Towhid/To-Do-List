@@ -1,20 +1,29 @@
-
-import AddTask from "../components/AddTask"
-import "./todo_app.css"
+import AddTask from "../components/addtask/AddTask";
+import CardList from "../components/cardlist/CardList";
+import TodoCounter from "../components/todocounter/TodoCounter";
+import TodoFilter from "../components/todofilter/TodoFilter";
+import TodoSearch from "../components/todosearch/TodoSearch";
+import "./todo_app.css";
 const TodoApp = () => {
   return (
     <main className="container">
-        <div className="todo-card">
-            <div className="todo-header">
-                <h2>To-Do App</h2>
-                <AddTask/>
-            </div>
-
-
+      <div className="todo-card-container">
+        <div className="todo-header">
+          <h2>To-Do App</h2>
+          <AddTask />
         </div>
+        <div className="todo-sub-header">
+          <TodoCounter />
+          <div className="todo-sub-header-right">
+            <TodoSearch/>
+            <TodoFilter/>
+          </div>
+        </div>
+        <CardList/>
 
+      </div>
     </main>
-  )
-}
+  );
+};
 
-export default TodoApp
+export default TodoApp;

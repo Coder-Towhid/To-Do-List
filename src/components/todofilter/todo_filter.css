@@ -1,0 +1,18 @@
+.filter-field {
+  position: relative;
+}
+.filter-container {
+  padding: 5px;
+  background-color: var(--primay-background-color);
+  right: 5px;
+  top: 40px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  position: absolute;
+  width: 200px;
+  height: 20vh;
+}
+
+.filter-container-header {
+  text-transform: uppercase;
+  font-weight: 600;
+}

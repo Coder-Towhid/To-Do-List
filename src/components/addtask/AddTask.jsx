@@ -1,7 +1,7 @@
 import "./add_task.css"
 const AddTask = () => {
   return (
-    <button>+Add Task</button>
+    <button>+ Add Todo</button>
   )
 }
 

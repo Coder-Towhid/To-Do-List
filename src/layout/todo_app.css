@@ -1,5 +1,6 @@
 h2 {
   color: var(--primary-light-color);
+  text-transform: uppercase;
 }
 .container {
   width: 100%;
@@ -12,7 +13,7 @@ h2 {
   padding: 10px;
 }
 
-.todo-card {
+.todo-card-container {
   width: 100%;
   max-width: 540px;
   min-height: 80vh;
@@ -25,4 +26,39 @@ h2 {
 .todo-header {
   display: flex;
   justify-content: space-between;
+}
+
+.todo-sub-header {
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.todo-sub-header-right {
+  height: 30px;
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.btn-cta {
+  cursor: pointer;
+}
+.btn-cta:hover {
+  color: var(--primary-light-color);
+}
+
+@media screen and (max-width: 540px) {
+  .todo-sub-header {
+    gap: 0;
+    align-items: start;
+    flex-direction: column-reverse;
+  }
+  .todo-sub-header-right {
+    justify-content: space-between;
+    width: 100%;
+  }
 }

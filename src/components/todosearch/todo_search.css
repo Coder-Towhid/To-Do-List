@@ -1,0 +1,23 @@
+.search-input {
+  width: 150px;
+  border: none;
+  background: none;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-field-wrapper {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  gap: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  background-color: var(--primay-background-color);
+}
+
+.search-field-wrapper input {
+  font-weight: 400;
+  font-size: 16px;
+}
