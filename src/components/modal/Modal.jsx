@@ -1,20 +1,22 @@
 import { X } from "@phosphor-icons/react";
 import "./modal.css";
-const Modal = ({ onClose, onAddTodo, setNewTodo }) => {
+const Modal = ({ title, onClose, onAddTodo, setNewTodo, newUpdateTodo }) => {
   return (
     <>
       <div className="modal-backdrop" onClick={onclose}></div>
 
       <div className="modal-container">
         <div className="todo-modal-title">
-          <h2>ADD Todo</h2>
+          <h3>{title}</h3>
           <X className="btn-cta" onClick={onClose} size={24} />
         </div>
         <form action="submit" onSubmit={onAddTodo}>
+        
           <input
             placeholder="Write your todo..."
             className="submit-input"
             type="text"
+            
             onChange={(e) => setNewTodo(e.target.value)}
           />
           <div className="priorities">

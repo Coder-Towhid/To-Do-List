@@ -1,10 +1,15 @@
 import { array } from "prop-types";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import Card from "../card/Card";
 import "./card_list.css";
+import { TodoContext } from "../../context/todoContext";
+
 const CardList = ({cards}) => {
+const {todos} = useContext(TodoContext)
+
+
   return <Fragment>{
-    cards.map((card, index)=>(<Card key={index}/>))
+    todos.map((todo, index)=>(<Card key={index} todo={todo}/>))
   }</Fragment>;
 };
 

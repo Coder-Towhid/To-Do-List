@@ -8,20 +8,18 @@ export const TodoProvider = ({ children }) => {
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem("todos")) || [];
     setTodos(storedTodos);
-  }, []);
+  }, [todos]);
 
-  // useEffect(() => {
-  //
-  // }, [todos]);
 
   const updateLocalStorage = (todos) => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
 
-  const addTodo = (title, status) => {
+  const addTodo = (title, priority, status=false) => {
     const newTodo = {
       id: todos.length + 1,
       title,
+      priority,
       status,
     };
     setTodos((prev) => {
@@ -66,7 +64,7 @@ export const TodoProvider = ({ children }) => {
   const filterTodoByStatus = (status) => {
     return todos.filter((todo) => todo.status === status);
   };
-  
+
   return (
     <TodoContext.Provider
       value={{

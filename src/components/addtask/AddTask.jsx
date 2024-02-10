@@ -28,6 +28,7 @@ const AddTask = () => {
       </button>
       {modal && (
         <Modal
+        title={"ADD Todo"}
           onClose={toggleModal}
           onAddTodo={handleAddTodo}
           setNewTodo={setNewTodo}
