@@ -10,9 +10,13 @@ export const TodoProvider = ({ children }) => {
     setTodos(storedTodos);
   }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //
+  // }, [todos]);
+
+  const updateLocalStorage = (todos) => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  };
 
   const addTodo = (title, status) => {
     const newTodo = {
@@ -20,30 +24,49 @@ export const TodoProvider = ({ children }) => {
       title,
       status,
     };
-    setTodos([...todos, newTodo]);
+    setTodos((prev) => {
+      const data = [...prev, newTodo];
+      updateLocalStorage(data);
+      return data;
+    });
   };
 
   const updateTodo = (id, updatedTodo) => {
-    const updatedTodos = todos.map(todo =>
-      todo.id === id ? { ...todo, ...updatedTodo } : todo
-    );
-    setTodos(updatedTodos);
+    setTodos((prev) => {
+      const index = prev.findIndex((todo) => todo.id === id);
+      if (index < 0) {
+        return prev;
+      }
+      prev.splice(index, 1, updatedTodo);
+
+      updateLocalStorage(prev);
+      return prev;
+    });
   };
 
-  const deleteTodo = id => {
-    const updatedTodos = todos.filter(todo => todo.id !== id);
-    setTodos(updatedTodos);
+  const deleteTodo = (id) => {
+    setTodos((prev) => {
+      const index = prev.findIndex((todo) => todo.id === id);
+      if (index < 0) {
+        return prev;
+      }
+      prev.splice(index, 1);
+
+      updateLocalStorage(prev);
+      return prev;
+    });
   };
 
-  const searchTodo = searchTerm => {
-    return todos.filter(todo =>
+  const searchTodo = (searchTerm) => {
+    return todos.filter((todo) =>
       todo.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
   };
 
-  const filterTodoByStatus = status => {
-    return todos.filter(todo => todo.status === status);
+  const filterTodoByStatus = (status) => {
+    return todos.filter((todo) => todo.status === status);
   };
+  
   return (
     <TodoContext.Provider
       value={{
@@ -53,7 +76,6 @@ export const TodoProvider = ({ children }) => {
         deleteTodo,
         searchTodo,
         filterTodoByStatus,
-    
       }}
     >
       {children}

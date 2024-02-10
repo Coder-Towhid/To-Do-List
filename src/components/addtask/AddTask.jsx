@@ -18,6 +18,7 @@ const AddTask = () => {
     if (newTodo.trim() !== "") {
       addTodo(newTodo, "low");
     }
+    setModal(false);
   };
 
   return (
@@ -30,7 +31,6 @@ const AddTask = () => {
           onClose={toggleModal}
           onAddTodo={handleAddTodo}
           setNewTodo={setNewTodo}
-     
         />
       )}
     </>

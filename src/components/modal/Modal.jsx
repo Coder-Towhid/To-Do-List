@@ -1,6 +1,6 @@
 import { X } from "@phosphor-icons/react";
 import "./modal.css";
-const Modal = ({ onClose, onAddTodo, setNewTodo, setNewPriority }) => {
+const Modal = ({ onClose, onAddTodo, setNewTodo }) => {
   return (
     <>
       <div className="modal-backdrop" onClick={onclose}></div>
@@ -10,12 +10,12 @@ const Modal = ({ onClose, onAddTodo, setNewTodo, setNewPriority }) => {
           <h2>ADD Todo</h2>
           <X className="btn-cta" onClick={onClose} size={24} />
         </div>
-        <form action="submit">
+        <form action="submit" onSubmit={onAddTodo}>
           <input
             placeholder="Write your todo..."
             className="submit-input"
             type="text"
-            onChange={e=>setNewTodo(e.target.value)}
+            onChange={(e) => setNewTodo(e.target.value)}
           />
           <div className="priorities">
             <div className="priority-left">
@@ -30,7 +30,7 @@ const Modal = ({ onClose, onAddTodo, setNewTodo, setNewPriority }) => {
               <label htmlFor="low">LOW</label>
             </div>
           </div>
-          <button onSubmit={onAddTodo}>Submit</button>
+          <button>Submit</button>
         </form>
       </div>
     </>

@@ -5,7 +5,7 @@ import { TodoProvider } from "./context/todoContext";
 function App() {
   return (
     <TodoProvider >
-      <TodoApp />;
+      <TodoApp />
     </TodoProvider>
   );
 }

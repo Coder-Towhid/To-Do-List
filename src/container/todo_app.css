@@ -14,8 +14,10 @@ h2 {
 }
 
 .todo-card-container {
+  margin-right: -30px;
+  padding-right: 30px;
   margin-top: 20px;
-  height: 70vh;
+  max-height: calc(100vh - 220px);
   overflow-y: auto;
   display: grid;
   gap: 24px;
