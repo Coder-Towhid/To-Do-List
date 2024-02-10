@@ -7,7 +7,6 @@ import "./todo_app.css";
 const TodoApp = () => {
   return (
     <main className="container">
-      <div className="todo-card-container">
         <div className="todo-header">
           <h2>To-Do App</h2>
           <AddTask />
@@ -15,12 +14,12 @@ const TodoApp = () => {
         <div className="todo-sub-header">
           <TodoCounter />
           <div className="todo-sub-header-right">
-            <TodoSearch/>
-            <TodoFilter/>
+            <TodoSearch />
+            <TodoFilter />
           </div>
         </div>
-        <CardList/>
-
+      <div className="todo-card-container">
+        <CardList cards={Array(4).fill(1)} />
       </div>
     </main>
   );

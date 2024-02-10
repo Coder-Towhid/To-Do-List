@@ -6,3 +6,12 @@
 
   box-sizing: border-box;
 }
+
+body {
+  background-size: 50%;
+
+  background-position: bottom right;
+  background-image: url(https://img.freepik.com/premium-vector/vector-mosaic-seamless-pattern-with-geometric-shapes-retro-memphis-style-fashion-8090s_547648-1314.jpg?w=826);
+  background-color: rgba(0, 0, 0, 0.04);
+  backdrop-filter: brightness(1.2);
+}

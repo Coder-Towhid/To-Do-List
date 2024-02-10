@@ -1,12 +1,12 @@
-import TodoApp from "./layout/TodoApp";
-
 import "./App.css";
+import TodoApp from "./container/TodoApp";
+import { TodoProvider } from "./context/todoContext";
 
 function App() {
   return (
-    <>
-      <TodoApp />
-    </>
+    <TodoProvider >
+      <TodoApp />;
+    </TodoProvider>
   );
 }
 
