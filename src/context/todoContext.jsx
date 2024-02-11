@@ -4,7 +4,9 @@ export const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
-  
+  const [search, setSearch] = useState("");
+  const [filters, setFilters] = useState({});
+
 
   
   
@@ -33,12 +35,12 @@ export const TodoProvider = ({ children }) => {
       if (index < 0) {
         return prev;
       }
-      prev.splice(index, 1, updatedTodo);
-      
+      prev.splice(index, 1, updatedTodo);     
       updateLocalStorage(prev);
       return prev;
     });
   };
+ 
 
   const deleteTodo = (id) => {
     setTodos((old) => {
@@ -54,14 +56,14 @@ export const TodoProvider = ({ children }) => {
     });
   };
   
-  const searchTodo = (searchTerm) => {
-    return todos.filter((todo) =>
-    todo.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const updateSearch = (searchTerm) => {
+
+    setSearch(searchTerm.trim())
+ 
   };
   
-  const filterTodoByStatus = (status) => {
-    return todos.filter((todo) => todo.status === status);
+  const updateFilters = (property, value) => {
+    setFilters(prev=> ({...prev, [property]:value}))
   };
   // useEffect(() => {
   //   localStorage.setItem('todos', JSON.stringify(todos));
@@ -76,11 +78,15 @@ export const TodoProvider = ({ children }) => {
     <TodoContext.Provider
       value={{
         todos,
+        search,
+        filters,
+        updateSearch,
+        updateFilters,
         addTodo,
         updateTodo,
         deleteTodo,
-        searchTodo,
-        filterTodoByStatus,
+      
+      
       }}
     >
       {children}

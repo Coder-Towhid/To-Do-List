@@ -6,13 +6,16 @@ import "./card.css";
 
 const Card = ({todo}) => {
   const [modal, setModal] = useState(false);
+  // const [check, setCheck] = useState(todo.status);
+  // console.log(check)
+
 
 
   const toggleModal = () => {
     modal ? setModal(false) : setModal(true);
   };
 
-const{deleteTodo, updateTodo}=useContext(TodoContext);
+const{deleteTodo,  updateTodo }=useContext(TodoContext);
 
 const handleUpdate = (newTodo)=>{
   updateTodo(todo.id, {...todo, title: newTodo })
@@ -21,12 +24,17 @@ const handleUpdate = (newTodo)=>{
 const handleDelete = ()=>{
   deleteTodo(todo.id)
 }
+
+const handleUpdateStatus = () => {
+  updateTodo(todo.id, {...todo, status: !todo.status});
+ 
+}
   return (
     <>
       <div className="card">
         <div className="card-left">
           <div className="checkbox">
-            <input type="checkbox" />
+            <input checked={todo.status} onChange={handleUpdateStatus} type="checkbox" />
           </div>
           <div className="title">
             <h3>{todo.title}</h3>
