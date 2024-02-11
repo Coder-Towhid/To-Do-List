@@ -1,7 +1,7 @@
 import { PencilLine, Trash } from "@phosphor-icons/react";
 import { useContext, useState } from "react";
 import { TodoContext } from "../../context/todoContext";
-import TodoModal from "../modal/Modal2";
+import TodoModal from "../modal/Modal";
 import "./card.css";
 
 const Card = ({todo}) => {
@@ -17,8 +17,8 @@ const Card = ({todo}) => {
 
 const{deleteTodo,  updateTodo }=useContext(TodoContext);
 
-const handleUpdate = (newTodo)=>{
-  updateTodo(todo.id, {...todo, title: newTodo })
+const handleUpdate = (newTodo, priority)=>{
+  updateTodo(todo.id, {...todo, title: newTodo, priority: priority })
 }
 
 const handleDelete = ()=>{
@@ -26,6 +26,7 @@ const handleDelete = ()=>{
 }
 
 const handleUpdateStatus = () => {
+
   updateTodo(todo.id, {...todo, status: !todo.status});
  
 }
@@ -48,7 +49,7 @@ const handleUpdateStatus = () => {
         </div>
       </div>
       {modal && <TodoModal isOpen={modal} onClose={toggleModal} onSave={handleUpdate} todo={todo}  />}
-      {/* {modal && <Modal onClose={toggleModal} title={"Update Todo"} onUpdateTodo={handleUpdate} setUpdateTodo={setNewTodo} newUpdateTodo={newTodo} />} */}
+      
     </>
   );
 };

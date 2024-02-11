@@ -47,3 +47,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+button:disabled {
+  opacity: 0.5;
+}
+button:disabled:hover {
+  background-color: var(--primary-light-color);
+  opacity: 0.5;
+}

@@ -1,0 +1,13 @@
+.emptyList {
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.emptyList h1 {
+  text-align: center;
+  font-size: clamp(18px, 5vw, 54px);
+  color: var(--primary-background-color);
+}

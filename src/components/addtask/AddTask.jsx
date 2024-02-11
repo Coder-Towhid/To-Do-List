@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { TodoContext } from "../../context/todoContext";
-import TodoModal from "../modal/Modal2";
+import TodoModal from "../modal/Modal";
 import "./add_task.css";
 const AddTask = () => {
   const [modal, setModal] = useState(false);
@@ -14,9 +14,9 @@ const AddTask = () => {
 
   const { addTodo } = useContext(TodoContext);
 
-  const handleAddTodo = (newTodo) => {
+  const handleAddTodo = (newTodo, priority) => {
     if (newTodo.trim() !== "") {
-      addTodo(newTodo, "low");
+      addTodo(newTodo, priority);
     }
     setModal(false);
   };
@@ -27,13 +27,7 @@ const AddTask = () => {
         Add Todo
       </button>
       {modal && <TodoModal isOpen={modal} onClose={toggleModal} onSave={handleAddTodo}  />}
-      {/* {modal && (
-        <Modal
-        title={"ADD Todo"}
-          onClose={toggleModal}
-          onAddTodo={handleAddTodo}
-          setNewTodo={setNewTodo}
-        /> */}
+ 
     
     </>
   );

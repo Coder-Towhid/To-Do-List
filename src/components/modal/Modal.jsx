@@ -1,52 +1,58 @@
-import { X } from "@phosphor-icons/react";
-import { useRef } from "react";
+import { useState } from "react";
+import { PRIORITY_ITEMS } from "../../constants/filters";
 import "./modal.css";
-const Modal = ({ title, onClose, onAddTodo, setNewTodo, newUpdateTodo, onUpdateTodo, setUpdateTodo }) => {
-  
 
-  const inputRef = useRef()
-  const handleInput = ()=>{
-    setNewTodo? setNewTodo(inputRef.current.value) : setUpdateTodo(inputRef.current.value)
-  }
+const TodoModal = ({ isOpen, onClose, todo, onSave }) => {
+  const [title, setTitle] = useState(todo ? todo.title : "");
+  const [priority, setPriority] = useState(todo ? todo.priority : null);
+
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    onSave(title, priority);
+    onClose();
+  };
+
   return (
+    isOpen && (
+      <>
+        <div className="modal-backdrop"></div>
+        <div className="modal-container">
+          <div className="modal-content">
+            <span className="close" onClick={onClose}>
+              &times;
+            </span>
+            <h2>{todo ? "Edit Todo" : "Add Todo"}</h2>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Enter todo title"
+            />
+            <p>Priority</p>
 
-    <>
-      <div className="modal-backdrop"></div>
+            {PRIORITY_ITEMS.map(item => (
+              <div key={item.value}>
+                <input
+                  name="priorityName"
+                  type="radio"
+                  value={item.value}
+                  id={item.label}
+                  checked={priority === item.value}
+                  onChange={(e) => setPriority(e.target.value)}
+                />
+                <label htmlFor={item.label}>{item.label}</label>
+              </div>
+            ))}
 
-      <div className="modal-container">
-        <div className="todo-modal-title">
-          <h3>{title}</h3>
-          <X className="btn-cta" onClick={onClose} size={24} />
-        </div>
-
-
-        <form action="submit" onSubmit={onAddTodo}>
-        
-          <input
-            ref={inputRef}
-            placeholder="Write your todo..."
-            className="submit-input"
-            type="text"
-            onChange={handleInput}
-          />
-          <div className="priorities">
-            <div className="priority-left">
-              <label>priority</label>
-            </div>
-            <div className="priority-right">
-              <input type="radio" name="priority" />
-              <label htmlFor="high">HIGH</label>
-              <input type="radio" name="priority" />
-              <label htmlFor="medium">MEDIUM</label>
-              <input type="radio" name="priority" />
-              <label htmlFor="low">LOW</label>
-            </div>
+            <button  disabled={title.trim() === ""  } onClick={handleSave}>
+              {todo ? "Save Changes" : "Add Todo"}
+            </button>
           </div>
-          <button>Submit</button>
-        </form>
-      </div>
-    </>
+        </div>
+      </>
+    )
   );
 };
 
-export default Modal;
+export default TodoModal;

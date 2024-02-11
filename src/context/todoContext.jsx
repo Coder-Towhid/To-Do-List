@@ -14,7 +14,7 @@ export const TodoProvider = ({ children }) => {
     localStorage.setItem("todos", JSON.stringify(todos));
   };
   
-  const addTodo = (title, priority, status=false) => {
+  const addTodo = (title, priority, status= false) => {
     const newTodo = {
       id: todos.length + 1,
       title,
@@ -65,6 +65,10 @@ export const TodoProvider = ({ children }) => {
   const updateFilters = (property, value) => {
     setFilters(prev=> ({...prev, [property]:value}))
   };
+
+  const resetFilters = ()=>{
+    setFilters({})
+  }
   // useEffect(() => {
   //   localStorage.setItem('todos', JSON.stringify(todos));
   // }, [todos]); 
@@ -81,6 +85,7 @@ export const TodoProvider = ({ children }) => {
         search,
         filters,
         updateSearch,
+        resetFilters,
         updateFilters,
         addTodo,
         updateTodo,

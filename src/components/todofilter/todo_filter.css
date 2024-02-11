@@ -2,15 +2,16 @@
   position: relative;
 }
 .filter-container {
+  z-index: 4;
   border-radius: 5px;
   padding: 5px;
-  background-color: var(--primary-background-color);
+  background-color: #fff;
   right: 5px;
   top: 40px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   position: absolute;
   width: 200px;
-  height: 20vh;
+  min-height: 20vh;
 }
 
 .filter-container-header {
