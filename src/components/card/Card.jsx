@@ -1,13 +1,12 @@
 import { PencilLine, Trash } from "@phosphor-icons/react";
 import { useContext, useState } from "react";
 import { TodoContext } from "../../context/todoContext";
-import Modal from "../modal/Modal";
+import TodoModal from "../modal/Modal2";
 import "./card.css";
 
 const Card = ({todo}) => {
   const [modal, setModal] = useState(false);
 
-  const [newTodo, setNewTodo]=useState("")
 
   const toggleModal = () => {
     modal ? setModal(false) : setModal(true);
@@ -15,12 +14,12 @@ const Card = ({todo}) => {
 
 const{deleteTodo, updateTodo}=useContext(TodoContext);
 
-const handleUpdate = ()=>{
-  deleteTodo(todo.id)
-
+const handleUpdate = (newTodo)=>{
+  updateTodo(todo.id, {...todo, title: newTodo })
 }
+
 const handleDelete = ()=>{
-  deleteTodo(todo.id, newTodo)
+  deleteTodo(todo.id)
 }
   return (
     <>
@@ -40,7 +39,8 @@ const handleDelete = ()=>{
           <Trash onClick={handleDelete} className="btn-cta" size={24} />
         </div>
       </div>
-      {modal && <Modal onClose={toggleModal} title={"Update Todo"} onUpdateTodo={handleUpdate} setUpdateTodo={setNewTodo} newUpdateTodo={newTodo} />}
+      {modal && <TodoModal isOpen={modal} onClose={toggleModal} onSave={handleUpdate} todo={todo}  />}
+      {/* {modal && <Modal onClose={toggleModal} title={"Update Todo"} onUpdateTodo={handleUpdate} setUpdateTodo={setNewTodo} newUpdateTodo={newTodo} />} */}
     </>
   );
 };

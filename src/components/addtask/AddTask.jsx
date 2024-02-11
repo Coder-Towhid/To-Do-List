@@ -1,20 +1,20 @@
 import { useContext, useState } from "react";
 import { TodoContext } from "../../context/todoContext";
-import Modal from "../modal/Modal";
+import TodoModal from "../modal/Modal2";
 import "./add_task.css";
 const AddTask = () => {
   const [modal, setModal] = useState(false);
-  const [newTodo, setNewTodo] = useState("");
+
   // const [newPriority, setNewPriority] = useState("");
 
-  const toggleModal = () => {
+  const toggleModal = (e) => {
+    console.log(e)
     modal ? setModal(false) : setModal(true);
   };
 
   const { addTodo } = useContext(TodoContext);
 
-  const handleAddTodo = (e) => {
-    e.preventDefault();
+  const handleAddTodo = (newTodo) => {
     if (newTodo.trim() !== "") {
       addTodo(newTodo, "low");
     }
@@ -26,14 +26,15 @@ const AddTask = () => {
       <button className="add-btn" onClick={toggleModal}>
         Add Todo
       </button>
-      {modal && (
+      {modal && <TodoModal isOpen={modal} onClose={toggleModal} onSave={handleAddTodo}  />}
+      {/* {modal && (
         <Modal
         title={"ADD Todo"}
           onClose={toggleModal}
           onAddTodo={handleAddTodo}
           setNewTodo={setNewTodo}
-        />
-      )}
+        /> */}
+    
     </>
   );
 };
