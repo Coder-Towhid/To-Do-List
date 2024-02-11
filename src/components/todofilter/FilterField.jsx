@@ -14,10 +14,11 @@ const FilterField = () => {
     <div className="filter-container">
       <p className="filter-container-header">filter By</p>
       <div className="filter-container-content">
-        <p>priority</p>
+        <p className="filter-title">priority</p>
         {PRIORITY_ITEMS.map((item) => (
-          <div key={item.value}>
+          <div className="filter-item" key={item.value}>
             <input
+            className="filter-input"
               name="priorityName"
               type="radio"
               value={item.value}
@@ -28,10 +29,11 @@ const FilterField = () => {
             <label htmlFor={item.value}>{item.label}</label>
           </div>
         ))}
-        <p>status</p>
+        <p className="filter-title">status</p>
         {STATUS_ITEMS.map((item) => (
-          <div key={item.value}>
+          <div className="filter-item" key={item.value}>
             <input
+                className="filter-input"
               name="statusName"
               type="radio"
               value={item.value}
@@ -39,7 +41,7 @@ const FilterField = () => {
               checked={filters[FILTER_PROPERTY.STATUS] === item.value}
               onChange={() => handleFilter(FILTER_PROPERTY.STATUS, item.value)}
             />
-            <label htmlFor={item.priorityName}>{item.label}</label>
+            <label htmlFor={item.value}>{item.label}</label>
           </div>
         ))}
       </div>

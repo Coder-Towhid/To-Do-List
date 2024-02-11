@@ -32,7 +32,7 @@ const handleUpdateStatus = () => {
 }
   return (
     <>
-      <div className="card">
+      <div className={`card ${todo.status ? 'active' : ''}`}>
         <div className="card-left">
           <div className="checkbox">
             <input checked={todo.status} onChange={handleUpdateStatus} type="checkbox" />
@@ -44,8 +44,8 @@ const handleUpdateStatus = () => {
         </div>
 
         <div className="action">
-          <PencilLine onClick={toggleModal} className="btn-cta" size={24} />
-          <Trash onClick={handleDelete} className="btn-cta" size={24} />
+          <PencilLine onClick={toggleModal} className={`${todo.status ? 'active-btn' : 'btn-cta'}`} size={24} />
+          <Trash onClick={handleDelete} className={`${todo.status ? 'active-btn' : 'btn-cta'}`} size={24} />
         </div>
       </div>
       {modal && <TodoModal isOpen={modal} onClose={toggleModal} onSave={handleUpdate} todo={todo}  />}

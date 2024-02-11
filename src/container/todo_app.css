@@ -52,6 +52,11 @@ h2 {
 .btn-cta:hover {
   color: var(--primary-light-color);
 }
+.info-filter {
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--primary-light-color);
+}
 
 @media screen and (max-width: 540px) {
   .todo-sub-header {

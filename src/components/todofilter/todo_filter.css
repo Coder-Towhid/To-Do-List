@@ -2,9 +2,9 @@
   position: relative;
 }
 .filter-container {
+  padding: 15px 10px 10px;
   z-index: 4;
   border-radius: 5px;
-  padding: 5px;
   background-color: #fff;
   right: 5px;
   top: 40px;
@@ -13,8 +13,29 @@
   width: 200px;
   min-height: 20vh;
 }
+.filter-container-content {
+  padding: 20px;
+}
 
 .filter-container-header {
   text-transform: uppercase;
   font-weight: 600;
+}
+
+.filter-title {
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.filter-item {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-container button {
+  margin-top: 5px;
+  width: 100%;
+  padding: 10px;
 }
